@@ -15,7 +15,11 @@ function updateCaseNumber(isInncrease){
     return newCaseNumber
 }
 
-
+function updateCaseTotalPrice(newCaseNumber){
+    const caseTotalPrice = newCaseNumber * 59;
+    const casePrice = document.getElementById('case-total-price');
+    casePrice.innerText = caseTotalPrice;
+}
 
 
 document.getElementById('btn-case-plus').addEventListener('click',function(){
@@ -28,9 +32,9 @@ document.getElementById('btn-case-plus').addEventListener('click',function(){
 
     const newCaseNumber = updateCaseNumber(true);
 
-    const caseTotalPrice = newCaseNumber * 59;
-    const casePrice = document.getElementById('case-total-price');
-    casePrice.innerText = caseTotalPrice;
+    updateCaseTotalPrice(newCaseNumber)
+    calculetSubTotal();
+    
 })
 
 
@@ -41,5 +45,9 @@ document.getElementById('btn-case-minus').addEventListener('click',function(){
 
     // const newCaseNumber = previousCaseNumber - 1;
     // caseBtnField.value = newCaseNumber
-    updateCaseNumber(false)
+    const newCaseNumber = updateCaseNumber(false)
+    
+    updateCaseTotalPrice(newCaseNumber);
+    calculetSubTotal();
+
 })
